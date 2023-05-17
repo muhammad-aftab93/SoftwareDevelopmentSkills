@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: elearningapp.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_e4ce377ed8d846f991fa85d6fdb1772f }}/e-learning:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./backend/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
