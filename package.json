@@ -1,0 +1,11 @@
+{
+  "name": "softwaredevelopmentskills",
+  "version": "1.0.0",
+  "description": "A course repository offered by LUT University",
+  "main": "/backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muhammad Aftab Hameed",
+  "license": "ISC"
+}
