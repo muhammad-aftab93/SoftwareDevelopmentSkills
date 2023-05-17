@@ -41,7 +41,6 @@ jobs:
       with:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
-        path: ./backend/
 
     - name: npm install, build, and test
       run: |
