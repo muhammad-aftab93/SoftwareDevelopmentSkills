@@ -8,8 +8,8 @@
     "start": "nodemon server.js",
     "debug": "nodemon --inspect server.js",
     "db":"docker build -t e-learning .",
-    "dr":"docker run --name e-learning -p 5000:5000 e-learning",
-    "docker": "docker build -t e-learning . && docker run --name e-learning -p 5000:5000 e-learning"
+    "dr":"docker run --name e-learning -p 80:80 e-learning",
+    "docker": "docker build -t e-learning . && docker run --name e-learning -p 80:80 e-learning"
   },
   "author": "Muhammad Aftab Hameed",
   "license": "ISC",
