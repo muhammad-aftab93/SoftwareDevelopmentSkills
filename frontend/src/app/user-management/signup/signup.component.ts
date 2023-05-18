@@ -44,11 +44,11 @@ export class SignupComponent implements OnInit {
           // localStorage.setItem('user', JSON.stringify(user));
           // localStorage.setItem('token', JSON.stringify(token));
           // this.router.navigate(['dashboard/layout/main']);
-          alert(result);
+          console.log(result);
         },
         error: (e) => {
           this.errorMessage = e.error['message'];
-          alert(this.errorMessage);
+          console.log(this.errorMessage);
         }
       });
   }

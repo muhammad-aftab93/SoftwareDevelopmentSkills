@@ -10,6 +10,10 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {HttpClientModule} from "@angular/common/http";
+import { StoreModule } from '@ngrx/store';
+import { loginReducer } from './ngrx/reducers/login.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { LoginEffects } from './ngrx/effects/login.effects';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,9 @@ import {HttpClientModule} from "@angular/common/http";
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({ loginState: loginReducer }),
+    EffectsModule.forRoot([LoginEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

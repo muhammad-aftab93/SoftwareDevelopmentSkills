@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const mongodb = require("./database/mongodb");
 
 // Body Parser Middleware
 app.use(express.json());
@@ -16,6 +17,9 @@ app.use(express.static(__dirname + '/dist'));
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
+
+// Mongodb Connection
+mongodb.connect().then().catch(err => console.log(err));
 
 // Start the server
 const PORT = process.env.PORT || 5000;
