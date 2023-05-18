@@ -6,11 +6,8 @@ const path = require('path');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// HomePage Route
-// app.get('/', (req, res) => res.render('/dist/index'));
-
 // Users Routes
-app.use('/api/users', require('./api/users'));
+app.use('/api/users', require('./api/users.controller'));
 
 // Serve static files from the 'dist' directory
 app.use(express.static(__dirname + '/dist'));
