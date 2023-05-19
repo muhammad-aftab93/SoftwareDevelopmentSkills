@@ -25,10 +25,13 @@ export const loginReducer = createReducer(
     ...state,
     error: null,
   })),
-  on(loginActions.loginSuccess, (state, { username }) => ({
+  on(loginActions.loginSuccess, (state, { userId, username, userRole, token }) => ({
     ...state,
     isLoggedIn: true,
+    userId,
     username,
+    role: userRole,
+    token,
     error: null,
   })),
   on(loginActions.loginFailure, (state, { error }) => ({

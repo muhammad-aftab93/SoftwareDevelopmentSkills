@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserManagementService } from '../../services/user-management.service';
 import { Router } from '@angular/router';
-import { login, logout } from '../../ngrx/actions/login.actions';
+import { login} from '../../ngrx/actions/login.actions';
 import { Store } from '@ngrx/store';
-import { selectError, selectIsLoggedIn, selectUsername } from '../../ngrx/selectors/login.selectors';
+import { selectError, selectIsLoggedIn, selectUsername} from '../../ngrx/selectors/login.selectors';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onLogin(loginForm: FormGroup) {
     if (loginForm.invalid) {
@@ -45,9 +46,5 @@ export class LoginComponent implements OnInit {
         password: loginForm.value.password,
       })
     );
-  }
-
-  logout(): void {
-    this.store.dispatch(logout());
   }
 }

@@ -8,6 +8,8 @@ import { MatButtonModule } from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import { StoreModule } from '@ngrx/store';
+import { loginReducer } from '../ngrx/reducers/login.reducer';
 
 const routes: Routes = [
   {
@@ -36,7 +38,8 @@ const routes: Routes = [
         MatButtonModule,
         MatGridListModule,
         MatInputModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        StoreModule.forFeature('loginState', loginReducer),
     ]
 })
 export class UserManagementModule { }

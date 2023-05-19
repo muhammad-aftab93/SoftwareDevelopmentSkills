@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { LoginState } from '../reducers/login.reducer';
 
 // Get the feature state
-export const selectLoginState = createFeatureSelector<LoginState>('auth');
+export const selectLoginState = createFeatureSelector<LoginState>('loginState');
 
 // Select specific properties from the feature state
 export const selectIsLoggedIn = createSelector(
