@@ -6,12 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './layout/header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { MatToolbarModule } from "@angular/material/toolbar";
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {HttpClientModule} from "@angular/common/http";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { HttpClientModule } from "@angular/common/http";
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { LoginEffects } from './ngrx/effects/login.effects';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { LoginEffects } from './ngrx/effects/login.effects';
     MatIconModule,
     HttpClientModule,
     StoreModule.forRoot(),
-    EffectsModule.forRoot([LoginEffects]),
+    EffectsModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,16 +1,27 @@
 <mat-toolbar color="primary">
   <mat-icon>book</mat-icon>
-  <span>eLearning</span>
+  <a routerLink="/" style="text-decoration: none; color: white">
+    <span>eLearning</span>
+  </a>
   <span class="example-spacer"></span>
-  <button mat-button>
+  <a mat-button routerLink="/courses/search">
     <mat-icon>search</mat-icon>
     Search Courses
-  </button>
-  <button mat-button>
+  </a>
+  <a mat-button routerLink="/courses/my" *ngIf="(isLoggedIn$ | async) && (userRole$ | async) === 'user'">
     <mat-icon>home</mat-icon>
     My Courses
-  </button>
-  <button mat-icon-button (click)="onLogout()">
+  </a>
+  <a mat-button routerLink="/courses/manage" *ngIf="(isLoggedIn$ | async) && (userRole$ | async) === 'admin'">
+    <mat-icon>book</mat-icon>
+    Manage Courses
+  </a>
+  <button mat-button (click)="onLogout()" *ngIf="(isLoggedIn$ | async)">
     <mat-icon>logout</mat-icon>
+    Logout
   </button>
+  <a mat-button routerLink="/" *ngIf="!(isLoggedIn$ | async)">
+    <mat-icon>login</mat-icon>
+    Login
+  </a>
 </mat-toolbar>

@@ -1,6 +1,12 @@
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #eaf1f1 }
+body {
+  margin: 0;
+  font-family:
+  Roboto, "Helvetica Neue", sans-serif;
+  background: url('assets/background.jpg');
+  background-size: cover;
+}
 .text-center {
   text-align: center;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { logout } from 'src/app/ngrx/actions/login.actions';
+import { selectIsLoggedIn, selectUserRole } from 'src/app/ngrx/selectors/login.selectors';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,9 @@ import { logout } from 'src/app/ngrx/actions/login.actions';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  isLoggedIn$ = this.store.select(selectIsLoggedIn);
+  userRole$ = this.store.select(selectUserRole);
 
   constructor(
     private store: Store,

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserManagementService} from "../../services/user-management.service";
+import { Store } from '@ngrx/store';
+import { signup } from 'src/app/ngrx/actions/signup.actions';
 
 @Component({
   selector: 'app-signup',
@@ -12,8 +14,9 @@ export class SignupComponent implements OnInit {
   errorMessage: String = '';
 
   constructor(
-    private userManagementSevice: UserManagementService,
-    private formBuilder: FormBuilder
+    private store: Store,
+    private formBuilder: FormBuilder,
+    private userManagementSevice: UserManagementService
   ) {
     this.signupForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -36,20 +39,12 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    this.userManagementSevice
-      .signup(signupForm.value.username, signupForm.value.password)
-      .subscribe({
-        next: (result) => {
-          // let token = result['access_token'];
-          // localStorage.setItem('user', JSON.stringify(user));
-          // localStorage.setItem('token', JSON.stringify(token));
-          // this.router.navigate(['dashboard/layout/main']);
-          console.log(result);
-        },
-        error: (e) => {
-          this.errorMessage = e.error['message'];
-          console.log(this.errorMessage);
-        }
-      });
+    this.store.dispatch(
+      signup({
+        username: signupForm.value.username,
+        password: signupForm.value.password,
+      })
+    );
+
   }
 }

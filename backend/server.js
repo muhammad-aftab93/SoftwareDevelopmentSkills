@@ -2,6 +2,14 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mongodb = require("./database/mongodb");
+const cors = require('cors');
+
+app.use(cors());
+// app.use(cors({
+//     origin: '*',
+//     methods: '*',
+//     allowedHeaders: '*',
+// }));
 
 // Body Parser Middleware
 app.use(express.json());

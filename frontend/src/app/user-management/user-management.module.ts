@@ -5,11 +5,16 @@ import { SignupComponent } from './signup/signup.component';
 import { RouterModule, Routes} from "@angular/router";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatInputModule } from "@angular/material/input";
+import { ReactiveFormsModule } from "@angular/forms";
 import { StoreModule } from '@ngrx/store';
 import { loginReducer } from '../ngrx/reducers/login.reducer';
+import { signupReducer } from '../ngrx/reducers/signup.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { LoginEffects } from '../ngrx/effects/login.effects';
+import { SignupEffects } from '../ngrx/effects/signup.effects';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -39,7 +44,13 @@ const routes: Routes = [
         MatGridListModule,
         MatInputModule,
         ReactiveFormsModule,
+        MatIconModule,
         StoreModule.forFeature('loginState', loginReducer),
+        StoreModule.forFeature('signupState', signupReducer),
+        EffectsModule.forFeature([
+          LoginEffects,
+          SignupEffects
+        ]),
     ]
 })
 export class UserManagementModule { }
