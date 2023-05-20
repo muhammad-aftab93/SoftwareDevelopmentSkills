@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search/search.component';
 import { MyCoursesComponent } from './my-courses/my-courses.component';
 import { ManageComponent } from './manage/manage.component';
-import { RouterModule, Routes } from '@angular/router';
-import { StoreModule } from '@ngrx/store';
+import { RouterModule, Routes, provideRouter} from '@angular/router';
+import { Store, StoreModule } from '@ngrx/store';
 import { loginReducer } from '../ngrx/reducers/login.reducer';
 import { SearchFiltersComponent } from './search-filters/search-filters.component';
 import { CoursesListComponent } from './courses-list/courses-list.component';
@@ -15,6 +15,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { AddCourseComponent } from './add-course/add-course.component';
+import { authGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -29,10 +33,12 @@ const routes: Routes = [
   {
     path: 'my-courses',
     component: MyCoursesComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'manage',
     component: ManageComponent,
+    canActivate: [authGuard]
   }
 ];
 
@@ -41,6 +47,7 @@ const routes: Routes = [
     SearchComponent,
     ManageComponent,
     MyCoursesComponent,
+    AddCourseComponent,
     CoursesListComponent,
     SearchFiltersComponent,
   ],
@@ -49,12 +56,18 @@ const routes: Routes = [
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
     MatButtonModule,
     MatGridListModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
     StoreModule.forFeature('loginState', loginReducer),
-  ]
+  ],
+  providers: [
+    Store,
+    provideRouter(routes)
+  ],
+  exports: [RouterModule]
 })
 export class CoursesModule { }

@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-search-filters',
-  templateUrl: './search-filters.component.html',
-  styleUrls: ['./search-filters.component.scss']
+  selector: 'app-add-course',
+  templateUrl: './add-course.component.html',
+  styleUrls: ['./add-course.component.scss']
 })
-export class SearchFiltersComponent implements OnInit {
-  filterForm: FormGroup;
+export class AddCourseComponent {
+  addForm: FormGroup;
   errorMessage: String = '';
 
   categoryOptions = ["", "Web Development", "Mobile Development", "Frontend", "Backend", "Full-stack"];
@@ -17,10 +17,11 @@ export class SearchFiltersComponent implements OnInit {
     private store: Store,
     private formBuilder: FormBuilder,
   ) {
-    this.filterForm = this.formBuilder.group({
-      title: [''],
-      author: [''],
-      category: ['']
+    this.addForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      author: ['', Validators.required],
+      category: ['', Validators.required],
+      price: ['', Validators.required],
     });
   }
 
@@ -28,8 +29,8 @@ export class SearchFiltersComponent implements OnInit {
 
   }
 
-  onSearch(filterForm: FormGroup) {
-    // if (filterForm.invalid) {
+  onAdd(addForm: FormGroup) {
+    // if (addForm.invalid) {
     //   this.errorMessage = 'All fields are required.';
     //   return;
     // }
