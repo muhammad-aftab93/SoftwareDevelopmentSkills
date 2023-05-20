@@ -24,7 +24,7 @@ export class LoginEffects {
       mergeMap(({ username, password }) =>
         this.userManagementService.login(username, password).pipe(
           map((response: any) => {
-            this.router.navigate(['/user-management/signup']);
+            this.router.navigate(['/']);
             return loginSuccess({
               username: response.user.username,
               userId: response.user._id,

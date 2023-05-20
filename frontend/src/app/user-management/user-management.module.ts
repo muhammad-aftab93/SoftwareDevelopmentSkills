@@ -15,6 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoginEffects } from '../ngrx/effects/login.effects';
 import { SignupEffects } from '../ngrx/effects/signup.effects';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 const routes: Routes = [
   {
@@ -40,11 +41,12 @@ const routes: Routes = [
         CommonModule,
         RouterModule.forChild(routes),
         MatCardModule,
+        MatIconModule,
+        MatInputModule,
         MatButtonModule,
         MatGridListModule,
-        MatInputModule,
+        MatFormFieldModule,
         ReactiveFormsModule,
-        MatIconModule,
         StoreModule.forFeature('loginState', loginReducer),
         StoreModule.forFeature('signupState', signupReducer),
         EffectsModule.forFeature([

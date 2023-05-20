@@ -8,7 +8,7 @@
     <mat-icon>search</mat-icon>
     Search Courses
   </a>
-  <a mat-button routerLink="/courses/my" *ngIf="(isLoggedIn$ | async) && (userRole$ | async) === 'user'">
+  <a mat-button routerLink="/courses/my-courses" *ngIf="(isLoggedIn$ | async) && (userRole$ | async) === 'user'">
     <mat-icon>home</mat-icon>
     My Courses
   </a>
@@ -20,7 +20,7 @@
     <mat-icon>logout</mat-icon>
     Logout
   </button>
-  <a mat-button routerLink="/" *ngIf="!(isLoggedIn$ | async)">
+  <a mat-button routerLink="/user-management/login" *ngIf="!(isLoggedIn$ | async)">
     <mat-icon>login</mat-icon>
     Login
   </a>

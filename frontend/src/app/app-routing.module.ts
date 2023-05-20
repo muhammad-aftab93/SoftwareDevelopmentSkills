@@ -9,12 +9,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'user-management',
+        redirectTo: 'courses',
         pathMatch: "full"
       },
       {
         path: 'user-management',
         loadChildren: () => import('./user-management/user-management.module').then(m => m.UserManagementModule)
+      },
+      {
+        path: 'courses',
+        loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule)
       }
     ]
   }
