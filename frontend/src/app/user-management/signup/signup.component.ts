@@ -11,7 +11,6 @@ import { signup } from 'src/app/ngrx/actions/signup.actions';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  errorMessage: String = '';
 
   constructor(
     private store: Store,
@@ -30,12 +29,12 @@ export class SignupComponent implements OnInit {
 
   onSignup(signupForm: FormGroup) {
     if (signupForm.invalid) {
-      this.errorMessage = "All fields are required.";
+      throw new Error("All fields are required.");
       return;
     }
 
     if (signupForm.value.password !== signupForm.value.confirmPassword) {
-      this.errorMessage = "Confirm password doesn't match.";
+      throw new Error("Confirm password doesn't match.");
       return;
     }
 

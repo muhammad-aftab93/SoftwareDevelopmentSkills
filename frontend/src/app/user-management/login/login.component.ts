@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(loginForm: FormGroup) {
     if (loginForm.invalid) {
-      this.errorMessage = 'All fields are required.';
+      throw new Error('All fields are required.');
       return;
     }
 

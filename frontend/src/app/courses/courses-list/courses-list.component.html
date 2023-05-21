@@ -11,15 +11,27 @@
 </div>
 
 <div class="row" *ngIf="courses.length > 0">
-  <div class="col-3" *ngFor="let course of courses" style="padding-bottom: 25px;">
+  <div class="col-3" *ngFor="let course of courses; index as i" style="padding-bottom: 25px;">
     <div class="card" style="width: 20rem; ">
-      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="card-img-top">
+      <!-- <img src="https://picsum.photos/750/600" class="card-img-top"> -->
+      <img [src]="'https://loremflickr.com/750/600/programming?random=' + i" class="card-img-top">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-        <div class="d-flex justify-content-center" *ngIf="isLoggedIn$ | async">
+        <h5 class="card-title">Course title</h5>
+        <p class="card-text">
+          Author: <br/>
+          Category: <br/>
+          Price:  <br/>
+        </p>
+        <div
+        class="btn-group d-flex justify-content-center"
+        role="group"
+        aria-label="Basic example"
+        *ngIf="isLoggedIn$ | async"
+        >
           <button href="#" class="btn btn-primary">Enroll</button>
+          <button href="#" class="btn btn-success">Complete</button>
+          <button href="#" class="btn btn-warning">With-draw</button>
+          <button href="#" class="btn btn-danger">Delete</button>
         </div>
       </div>
     </div>
