@@ -40,7 +40,6 @@ router.post('/login', async (req, res) => {
         // Passwords match, authentication successful
         return res.json({ status: true, message: 'Authentication successful', token, user });
       } catch (error) {
-        console.error('Error during login', error);
         res.status(500).json({ error: 'Internal server error' });
       }
 });

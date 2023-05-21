@@ -1,4 +1,4 @@
-import { NgModule} from '@angular/core';
+import { ErrorHandler, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,19 +16,25 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { loginReducer } from './ngrx/reducers/login.reducer';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { GlobalErrorHandler } from './interceptors/global-error-handler';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LayoutComponent
+    LayoutComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
+    MatIconModule,
+    MatDialogModule,
+    MatButtonModule,
     AppRoutingModule,
     MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
     HttpClientModule,
     StoreModule.forRoot(),
     EffectsModule.forRoot(),
@@ -44,8 +50,17 @@ import { loginReducer } from './ngrx/reducers/login.reducer';
     useClass: LoadingInterceptor,
     multi: true
   },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true
+  },
+  {
+    provide: ErrorHandler,
+    useClass: GlobalErrorHandler
+  }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule { }
