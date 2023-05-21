@@ -1,5 +1,5 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
-import { GlobalErrorService } from '../services/global-error.service';
+import { DialogService } from '../services/dialog.service';
 
 
 @Injectable()
@@ -10,7 +10,7 @@ export class GlobalErrorHandler extends ErrorHandler {
   }
 
   override handleError(error: any): void {
-    const globalErrorService = this.injector.get(GlobalErrorService);
+    const globalErrorService = this.injector.get(DialogService);
     globalErrorService.showError('Error', error.message);
   }
 }

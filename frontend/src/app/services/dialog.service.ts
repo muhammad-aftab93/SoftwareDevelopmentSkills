@@ -5,7 +5,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 @Injectable({
   providedIn: 'root',
 })
-export class GlobalErrorService {
+export class DialogService {
 
   constructor(private dialog: MatDialog) {}
 

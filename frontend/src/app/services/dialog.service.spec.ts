@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GlobalErrorService } from './global-error.service';
+import { DialogService } from './dialog.service';
 
 describe('GlobalErrorService', () => {
-  let service: GlobalErrorService;
+  let service: DialogService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(GlobalErrorService);
+    service = TestBed.inject(DialogService);
   });
 
   it('should be created', () => {

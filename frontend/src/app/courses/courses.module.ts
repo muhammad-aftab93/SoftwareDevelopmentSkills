@@ -19,6 +19,13 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { authGuard } from '../guards/auth.guard';
+import { roleGuard } from "../guards/role.guard";
+import {MatTabsModule} from "@angular/material/tabs";
+import {addReducer} from "../ngrx/reducers/add.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {LoginEffects} from "../ngrx/effects/login.effects";
+import {SignupEffects} from "../ngrx/effects/signup.effects";
+import {AddEffects} from "../ngrx/effects/add.effects";
 
 const routes: Routes = [
   {
@@ -38,7 +45,10 @@ const routes: Routes = [
   {
     path: 'manage',
     component: ManageComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard, roleGuard],
+    data: {
+      expectedRole: 'admin'
+    }
   }
 ];
 
@@ -63,6 +73,10 @@ const routes: Routes = [
     MatFormFieldModule,
     ReactiveFormsModule,
     StoreModule.forFeature('loginState', loginReducer),
+    StoreModule.forFeature('addState', addReducer),
+    EffectsModule.forFeature([
+      AddEffects,
+    ]),
   ],
   providers: [
     Store,

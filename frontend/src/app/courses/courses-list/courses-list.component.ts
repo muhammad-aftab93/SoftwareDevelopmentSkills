@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectIsLoggedIn } from 'src/app/ngrx/selectors/login.selectors';
+import {selectIsLoggedIn, selectUserRole} from 'src/app/ngrx/selectors/login.selectors';
 
 @Component({
   selector: 'app-courses-list',
@@ -8,8 +8,9 @@ import { selectIsLoggedIn } from 'src/app/ngrx/selectors/login.selectors';
   styleUrls: ['./courses-list.component.scss']
 })
 export class CoursesListComponent implements OnInit {
-
+  @Input() page: string = '';
   isLoggedIn$ = this.store.select(selectIsLoggedIn);
+  userRole$ = this.store.select(selectUserRole);
 
   constructor(
     private store: Store,

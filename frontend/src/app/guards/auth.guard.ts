@@ -12,4 +12,4 @@ export function authGuard() {
       map(isLoggedIn =>  !isLoggedIn ? router.parseUrl('/user-management/login') : isLoggedIn)
     );
 
-};
+}
