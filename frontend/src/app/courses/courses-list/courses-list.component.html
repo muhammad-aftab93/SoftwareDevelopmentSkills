@@ -1,0 +1,27 @@
+<div class="row" *ngIf="courses.length === 0">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+          <strong>No courses found!</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="courses.length > 0">
+  <div class="col-3" *ngFor="let course of courses" style="padding-bottom: 25px;">
+    <div class="card" style="width: 20rem; ">
+      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <div class="d-flex justify-content-center" *ngIf="isLoggedIn$ | async">
+          <button href="#" class="btn btn-primary">Enroll</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

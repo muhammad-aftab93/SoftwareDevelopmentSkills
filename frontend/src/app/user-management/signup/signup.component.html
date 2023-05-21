@@ -1,0 +1,41 @@
+<div class="card-container">
+  <mat-card class="example-card">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center">
+
+      <mat-card-header class="text-center">
+        <mat-card-title>eLearning</mat-card-title>
+        <mat-card-subtitle>Signup into eLearning</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content class="full-width text-center">
+        <form [formGroup]="signupForm" (submit)="onSignup(signupForm)">
+          <mat-form-field class="form-input">
+            <mat-label>Username</mat-label>
+            <input matInput value="" formControlName="username" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" value="" formControlName="password" required>
+          </mat-form-field>
+
+          <mat-form-field class="form-input">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" value="" formControlName="confirmPassword" required>
+          </mat-form-field>
+
+          <div class="text-center">
+            <button type="submit" mat-raised-button color="primary">
+              <mat-icon>person_add</mat-icon>
+              Signup
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </div>
+
+    <div class="signin-link-container">
+      <a routerLink="/">Already have an account? Login</a>
+    </div>
+  </mat-card>
+</div>
