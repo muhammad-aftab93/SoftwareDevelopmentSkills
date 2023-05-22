@@ -10,6 +10,10 @@ export class CoursesService {
 
   constructor(private http: HttpClient) { }
 
+  get(): Observable<any> {
+    return this.http.get(baseApiUrl + '/courses');
+  }
+
   add(title: string, author: string, category: string, price: string): Observable<any> {
     return this.http.post(baseApiUrl + '/courses', {
       title,

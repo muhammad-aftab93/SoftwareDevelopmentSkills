@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import {add} from "../../ngrx/actions/add-course.actions";
+import {add} from "../../ngrx/actions/manage-course.actions";
 
 @Component({
   selector: 'app-add-course',
@@ -44,7 +44,6 @@ export class AddCourseComponent {
         price: addForm.value.price,
       })
     );
-
     this.addForm.reset();
   }
 

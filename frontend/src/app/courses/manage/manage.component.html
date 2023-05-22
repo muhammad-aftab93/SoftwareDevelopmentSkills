@@ -3,6 +3,6 @@
     <app-add-course></app-add-course>
   </div>
   <div class="col-9">
-    <app-courses-list [page]="'manage'"></app-courses-list>
+    <app-courses-list [page]="'manage'" [courses]="courses$ | async"></app-courses-list>
   </div>
 </div>

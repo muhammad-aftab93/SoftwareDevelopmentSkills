@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Course } from 'src/app/models/course';
+import { deleteCourse, get } from 'src/app/ngrx/actions/manage-course.actions';
 import {selectIsLoggedIn, selectUserRole} from 'src/app/ngrx/selectors/login.selectors';
 
 @Component({
@@ -9,6 +11,7 @@ import {selectIsLoggedIn, selectUserRole} from 'src/app/ngrx/selectors/login.sel
 })
 export class CoursesListComponent implements OnInit {
   @Input() page: string = '';
+  @Input() courses: Course[] | null = [];
   isLoggedIn$ = this.store.select(selectIsLoggedIn);
   userRole$ = this.store.select(selectUserRole);
 
@@ -16,13 +19,19 @@ export class CoursesListComponent implements OnInit {
     private store: Store,
     )
   {
-
   }
 
   ngOnInit(): void {
 
   }
 
-  courses = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  onDeleteCourse(id: string): void {
+    if(confirm('Are you sure you want to delete this course?')) {
+      this.store.dispatch(deleteCourse({ courseId: id }));
+      this.store.dispatch(get());
+    }
+  }
+
+
 
 }

@@ -21,11 +21,11 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { authGuard } from '../guards/auth.guard';
 import { roleGuard } from "../guards/role.guard";
 import {MatTabsModule} from "@angular/material/tabs";
-import {addReducer} from "../ngrx/reducers/add.reducer";
+import {manageCourseReducer} from "../ngrx/reducers/manage-course.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {LoginEffects} from "../ngrx/effects/login.effects";
 import {SignupEffects} from "../ngrx/effects/signup.effects";
-import {AddEffects} from "../ngrx/effects/add.effects";
+import {ManageCourseEffects} from "../ngrx/effects/manage-course.effects";
 
 const routes: Routes = [
   {
@@ -73,9 +73,9 @@ const routes: Routes = [
     MatFormFieldModule,
     ReactiveFormsModule,
     StoreModule.forFeature('loginState', loginReducer),
-    StoreModule.forFeature('addState', addReducer),
+    StoreModule.forFeature('manageCourseState', manageCourseReducer),
     EffectsModule.forFeature([
-      AddEffects,
+      ManageCourseEffects,
     ]),
   ],
   providers: [

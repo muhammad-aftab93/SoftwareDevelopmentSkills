@@ -20,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.globalErrorService.showError('Error', error.error.error);
+        this.globalErrorService.showDialog('Error', error.error.error);
         return throwError(() =>  error);
       })
     );

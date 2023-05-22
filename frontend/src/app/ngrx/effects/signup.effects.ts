@@ -23,7 +23,7 @@ export class SignupEffects {
       mergeMap(({ username, password }) =>
         this.userManagementService.signup(username, password).pipe(
           map((response: any) => {
-            this.dialogService.showError('User created', 'User created successfully.');
+            this.dialogService.showDialog('User created', 'User created successfully.');
             return signupSuccess({ userId: response.user._id });
           }),
           catchError((error) => of(signupFailure({ error: error.message })))

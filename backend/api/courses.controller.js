@@ -7,6 +7,20 @@ const verifyToken = require('../middlewares/jwtMiddleware');
 const { ObjectId } = require('mongodb');
 const authorizeRole = require("../middlewares/authorizeRole");
 
+router.get('/', verifyToken, authorizeRole('admin'), async (req, res) => {
+    const course = req.body;
+
+    try {
+        const db = mongodb.getDB();
+        const coursesCollection = db.collection('courses');
+        const courses = await coursesCollection.find().toArray();
+        res.status(201).json({status: true, message: 'list of courses', courses: courses});
+    } catch (error) {
+        console.error('Error getting course', error);
+        res.status(500).json({error: 'Internal server error'});
+    }
+});
+
 router.post('/', verifyToken, authorizeRole('admin'), async (req, res) => {
     const course = req.body;
 

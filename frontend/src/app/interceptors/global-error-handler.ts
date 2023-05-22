@@ -11,7 +11,7 @@ export class GlobalErrorHandler extends ErrorHandler {
 
   override handleError(error: any): void {
     const globalErrorService = this.injector.get(DialogService);
-    globalErrorService.showError('Error', error.message);
+    globalErrorService.showDialog('Error', error.message);
   }
 }
 
