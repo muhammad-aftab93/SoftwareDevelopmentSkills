@@ -56,6 +56,11 @@ router.delete("/:id", verifyToken, authorizeRole("admin"), async (req, res) => {
     if (result.deletedCount === 0)
       return res.status(404).json({ error: "Course not found" });
 
+    const userCoursesCollection = db.collection("user_courses");
+    await userCoursesCollection.deleteMany({
+      courseId: courseId,
+    });
+
     res.json({ status: true, message: "Course deleted" });
   } catch (error) {
     console.error("Error deleting course", error);
@@ -85,6 +90,25 @@ router.post("/search", async (req, res) => {
     res.json({ status: true, message: "Ok", courses: results });
   } catch (error) {
     res.status(500).json({ error: "An error occurred while searching." });
+  }
+});
+
+router.post("/enroll", verifyToken, authorizeRole("user"), async (req, res) => {
+  const { userId, courseId } = req.body;
+
+  try {
+    const db = mongodb.getDB();
+    const userCoursesCollection = db.collection('user_courses');
+    const entity = {
+      userId,
+      courseId,
+    };
+    const result = await userCoursesCollection.insertOne(entity);
+
+    res.json({ status: true, message: "Course enrolled successfully.", _id: result.insertedId });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred while enrolling the course." });
   }
 });
 

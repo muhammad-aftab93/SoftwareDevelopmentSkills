@@ -28,7 +28,7 @@
         aria-label="Basic example"
         *ngIf="isLoggedIn$ | async"
         >
-          <button href="#" *ngIf="(userRole$ | async) === 'user' && page === 'search'" class="btn btn-primary">Enroll</button>
+          <button href="#" *ngIf="(userRole$ | async) === 'user' && page === 'search'" (click)="onEnrollCourse(course._id)" class="btn btn-primary">Enroll</button>
           <button href="#" *ngIf="(userRole$ | async) === 'user' && page === 'my-courses'" class="btn btn-success">Complete</button>
           <button href="#" *ngIf="(userRole$ | async) === 'user' && page === 'my-courses'" class="btn btn-warning">With-draw</button>
           <button href="#" *ngIf="(userRole$ | async) === 'admin' && page === 'manage'" (click)="onDeleteCourse(course._id)" class="btn btn-danger"><mat-icon>delete</mat-icon></button>

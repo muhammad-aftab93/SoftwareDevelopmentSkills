@@ -12,6 +12,7 @@ export class CoursesListComponent implements OnInit {
   @Input() page: string = '';
   @Input() courses: Course[] | null = [];
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onEnroll: EventEmitter<string> = new EventEmitter<string>();
   isLoggedIn$ = this.store.select(selectIsLoggedIn);
   userRole$ = this.store.select(selectUserRole);
 
@@ -27,6 +28,10 @@ export class CoursesListComponent implements OnInit {
 
   onDeleteCourse(id: string): void {
     this.onDelete.emit(id);
+  }
+
+  onEnrollCourse(id: string): void {
+    this.onEnroll.emit(id);
   }
 
 }

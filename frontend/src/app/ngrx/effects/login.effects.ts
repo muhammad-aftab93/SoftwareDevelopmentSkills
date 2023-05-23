@@ -21,6 +21,8 @@ export class LoginEffects {
       mergeMap(({ username, password }) =>
         this.userManagementService.login(username, password).pipe(
           map((response: any) => {
+            localStorage.setItem('userId', response.user._id);
+            localStorage.setItem('token', response.token);
             this.router.navigate(['/']);
             return loginSuccess({
               username: response.user.username,

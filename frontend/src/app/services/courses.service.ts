@@ -31,4 +31,8 @@ export class CoursesService {
     return this.http.post(baseApiUrl + '/courses/search', { title, author, category });
   }
 
+  enroll(userId: string, courseId: string): Observable<any> {
+    return this.http.post(baseApiUrl + '/courses/enroll', { userId, courseId });
+  }
+
 }

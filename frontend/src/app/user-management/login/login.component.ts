@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserManagementService } from '../../services/user-management.service';
-import { Router } from '@angular/router';
 import { login} from '../../ngrx/actions/login.actions';
 import { Store } from '@ngrx/store';
 import { selectError, selectIsLoggedIn, selectUsername} from '../../ngrx/selectors/login.selectors';
@@ -20,9 +18,7 @@ export class LoginComponent implements OnInit {
   error$ = this.store.select(selectError);
 
   constructor(
-    private userManagementService: UserManagementService,
     private formBuilder: FormBuilder,
-    private router: Router,
     private store: Store
   ) {
     this.loginForm = this.formBuilder.group({
