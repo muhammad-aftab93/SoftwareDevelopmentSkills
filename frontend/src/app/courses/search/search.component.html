@@ -3,6 +3,6 @@
     <app-search-filters></app-search-filters>
   </div>
   <div class="col-9">
-    <app-courses-list  [page]="'search'"></app-courses-list>
+    <app-courses-list  [page]="'search'" [courses]="courses$ | async"></app-courses-list>
   </div>
 </div>

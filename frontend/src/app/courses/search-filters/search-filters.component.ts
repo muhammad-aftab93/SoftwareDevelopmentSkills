@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { search } from 'src/app/ngrx/actions/search.actions';
 
 @Component({
   selector: 'app-search-filters',
@@ -22,26 +23,20 @@ export class SearchFiltersComponent implements OnInit {
       author: [''],
       category: ['']
     });
+    this.store.dispatch(search({title: '', author: '', category: ''}));
   }
 
   ngOnInit(): void {
-
   }
 
   onSearch(filterForm: FormGroup) {
-    // if (filterForm.invalid) {
-    //   this.errorMessage = 'All fields are required.';
-    //   return;
-    // }
-
-    // this.store.dispatch(
-    //   login({
-    //     username: loginForm.value.username,
-    //     password: loginForm.value.password,
-    //   })
-    // );
-
-
+    this.store.dispatch(
+      search({
+        title: filterForm.value.title,
+        author: filterForm.value.author,
+        category: filterForm.value.category,
+      })
+    );
   }
 
 }

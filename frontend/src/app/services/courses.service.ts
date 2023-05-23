@@ -27,4 +27,8 @@ export class CoursesService {
     return this.http.delete(baseApiUrl + '/courses/' + id);
   }
 
+  search(title: string, author: string, category: string): Observable<any> {
+    return this.http.post(baseApiUrl + '/courses/search', { title, author, category });
+  }
+
 }

@@ -51,7 +51,7 @@ const routes: Routes = [
         StoreModule.forFeature('signupState', signupReducer),
         EffectsModule.forFeature([
           LoginEffects,
-          SignupEffects
+          SignupEffects,
         ]),
     ]
 })

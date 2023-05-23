@@ -20,12 +20,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { authGuard } from '../guards/auth.guard';
 import { roleGuard } from "../guards/role.guard";
-import {MatTabsModule} from "@angular/material/tabs";
 import {manageCourseReducer} from "../ngrx/reducers/manage-course.reducer";
 import {EffectsModule} from "@ngrx/effects";
-import {LoginEffects} from "../ngrx/effects/login.effects";
-import {SignupEffects} from "../ngrx/effects/signup.effects";
 import {ManageCourseEffects} from "../ngrx/effects/manage-course.effects";
+import { searchReducer } from '../ngrx/reducers/search.reducer';
+import { SearchEffects } from '../ngrx/effects/search.effects';
 
 const routes: Routes = [
   {
@@ -74,8 +73,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     StoreModule.forFeature('loginState', loginReducer),
     StoreModule.forFeature('manageCourseState', manageCourseReducer),
+    StoreModule.forFeature('searchState', searchReducer),
     EffectsModule.forFeature([
       ManageCourseEffects,
+      SearchEffects,
     ]),
   ],
   providers: [

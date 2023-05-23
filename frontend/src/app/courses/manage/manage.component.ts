@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { get } from 'src/app/ngrx/actions/manage-course.actions';
+import { deleteCourse, get } from 'src/app/ngrx/actions/manage-course.actions';
 import { selectCourses } from 'src/app/ngrx/selectors/manage-course.selectors';
 
 @Component({
@@ -21,5 +21,11 @@ export class ManageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onDelete(id: string): void {
+    if(confirm('Are you sure you want to delete this course?')) {
+      this.store.dispatch(deleteCourse({ courseId: id }));
+      this.store.dispatch(get());
+    }
+  }
 
 }
