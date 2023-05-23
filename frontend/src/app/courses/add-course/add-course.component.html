@@ -7,24 +7,24 @@
 
     <mat-card-content class="full-width text-center">
       <form [formGroup]="addForm" (submit)="onAdd(addForm)">
-        <mat-form-field class="form-input">
+        <mat-form-field class="full-width">
           <mat-label>Title</mat-label>
           <input matInput value="" formControlName="title" required>
         </mat-form-field>
 
-        <mat-form-field class="form-input">
+        <mat-form-field class="full-width">
           <mat-label>Author</mat-label>
           <input matInput value="" formControlName="author" required>
         </mat-form-field>
 
-        <mat-form-field class="form-input">
+        <mat-form-field class="full-width">
           <mat-label>Select an category</mat-label>
           <mat-select formControlName="category">
             <mat-option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</mat-option>
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="form-input">
+        <mat-form-field class="full-width">
           <mat-label>Price</mat-label>
           <input matInput value="" formControlName="price" required>
         </mat-form-field>
@@ -32,7 +32,7 @@
         <div class="text-center">
           <button type="submit" mat-raised-button color="primary">
             <mat-icon>add</mat-icon>
-            Add Course
+            Add
           </button>
         </div>
       </form>
