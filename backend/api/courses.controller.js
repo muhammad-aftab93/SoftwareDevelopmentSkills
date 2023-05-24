@@ -134,13 +134,13 @@ router.get("/ongoing/:userId", verifyToken, authorizeRole("user"), async (req, r
 
     const courseIds = enrolledCourses.map((course) => course.courseId);
     const enrolledCourseDetails = await coursesCollection
-      .find({ _id: { $in: courseIds.map(ObjectId) } })
-      .toArray();
+        .find({ _id: { $in: courseIds.map((id) => new ObjectId(id)) } })
+        .toArray();
 
     res.json({
       status: true,
       message: "Enrolled courses retrieved successfully.",
-      enrolledCourses: enrolledCourseDetails,
+      courses: enrolledCourseDetails,
     });
   } catch (error) {
     console.error("Error retrieving enrolled courses", error);
@@ -165,16 +165,62 @@ router.get("/completed/:userId", verifyToken, authorizeRole("user"), async (req,
 
     const courseIds = completedCourses.map((course) => course.courseId);
     const completedCourseDetails = await coursesCollection
-      .find({ _id: { $in: courseIds.map(ObjectId) } })
-      .toArray();
+        .find({ _id: { $in: courseIds.map((id) => new ObjectId(id)) } })
+        .toArray();
 
     res.json({
       status: true,
       message: "Completed courses retrieved successfully.",
-      incompleteCourses: completedCourseDetails,
+      courses: completedCourseDetails,
     });
   } catch (error) {
     console.error("Error retrieving completed courses", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.post("/markAsComplete", verifyToken, authorizeRole("user"), async (req, res) => {
+  const { userId, courseId } = req.body;
+
+  try {
+    const db = mongodb.getDB();
+    const userCoursesCollection = db.collection("user_courses");
+
+    await userCoursesCollection.updateOne(
+      { userId: userId, courseId: courseId },
+      { $set: { completed: true } }
+    );
+
+    res.json({
+      status: true,
+      message: "Course marked as completed.",
+      courses: completedCourseDetails,
+    });
+  } catch (error) {
+    console.error("Failed to mark course as completed.", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.post("/withdraw", verifyToken, authorizeRole("user"), async (req, res) => {
+  const { userId, courseId } = req.body;
+
+  try {
+    const db = mongodb.getDB();
+    const userCoursesCollection = db.collection("user_courses");
+
+    await userCoursesCollection.deleteOne({
+      userId: userId,
+      courseId: courseId
+    });
+
+    res.json({
+      status: true,
+      message: "Course with-drawl successful.",
+      courses: completedCourseDetails,
+    });
+  } catch (error) {
+    console.error("Failed to with-draw the course.", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });

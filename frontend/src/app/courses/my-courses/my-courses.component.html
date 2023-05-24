@@ -5,12 +5,12 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="panelsStayOpen-headingOne">
           <button style="background-color: #3f51b5; color: white" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-            On-going courses (25)
+            On-going courses ({{(ongoingCourses$ | async)?.length}})
           </button>
         </h2>
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
           <div class="accordion-body">
-            <app-courses-list  [page]="'my-courses'"></app-courses-list>
+            <app-courses-list  [page]="'my-courses'" [courses]="ongoingCourses$ | async"></app-courses-list>
           </div>
         </div>
       </div>

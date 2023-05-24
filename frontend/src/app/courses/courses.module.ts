@@ -25,6 +25,8 @@ import {EffectsModule} from "@ngrx/effects";
 import {ManageCourseEffects} from "../ngrx/effects/manage-course.effects";
 import { searchReducer } from '../ngrx/reducers/search.reducer';
 import { SearchEffects } from '../ngrx/effects/search.effects';
+import { myCoursesReducer } from '../ngrx/reducers/my-courses.reducer';
+import { MyCoursesEffects } from '../ngrx/effects/my-courses.effects';
 
 const routes: Routes = [
   {
@@ -74,9 +76,11 @@ const routes: Routes = [
     StoreModule.forFeature('loginState', loginReducer),
     StoreModule.forFeature('manageCourseState', manageCourseReducer),
     StoreModule.forFeature('searchState', searchReducer),
+    StoreModule.forFeature('myCoursesState', myCoursesReducer),
     EffectsModule.forFeature([
       ManageCourseEffects,
       SearchEffects,
+      MyCoursesEffects,
     ]),
   ],
   providers: [

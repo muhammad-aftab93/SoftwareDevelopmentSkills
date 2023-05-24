@@ -35,4 +35,20 @@ export class CoursesService {
     return this.http.post(baseApiUrl + '/courses/enroll', { userId, courseId });
   }
 
+  getOnGoing(userId: string): Observable<any> {
+    return this.http.get(baseApiUrl + '/courses/ongoing/' + userId);
+  }
+
+  getCompleted(userId: string): Observable<any> {
+    return this.http.get(baseApiUrl + '/courses/completed/' + userId);
+  }
+
+  markAsComplete(userId: string, courseId: string): Observable<any> {
+    return this.http.post(baseApiUrl + '/courses/markAsComplete/', { userId, courseId });
+  }
+
+  withdraw(userId: string, courseId: string): Observable<any> {
+    return this.http.post(baseApiUrl + '/courses/withdraw/', { userId, courseId });
+  }
+
 }
