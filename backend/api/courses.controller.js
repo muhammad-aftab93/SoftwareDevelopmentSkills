@@ -102,13 +102,80 @@ router.post("/enroll", verifyToken, authorizeRole("user"), async (req, res) => {
     const entity = {
       userId,
       courseId,
+      completed: false
     };
+    const existingEntity = await userCoursesCollection.findOne(entity);
+    if (existingEntity) {
+        return res.status(409).json({error: 'You have already enrolled in this course.'});
+    }
     const result = await userCoursesCollection.insertOne(entity);
 
     res.json({ status: true, message: "Course enrolled successfully.", _id: result.insertedId });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "An error occurred while enrolling the course." });
+  }
+});
+
+router.get("/ongoing/:userId", verifyToken, authorizeRole("user"), async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const db = mongodb.getDB();
+    const userCoursesCollection = db.collection("user_courses");
+    const coursesCollection = db.collection("courses");
+
+    const enrolledCourses = await userCoursesCollection
+      .find({
+        userId: userId,
+        completed: false,
+      })
+      .toArray();
+
+    const courseIds = enrolledCourses.map((course) => course.courseId);
+    const enrolledCourseDetails = await coursesCollection
+      .find({ _id: { $in: courseIds.map(ObjectId) } })
+      .toArray();
+
+    res.json({
+      status: true,
+      message: "Enrolled courses retrieved successfully.",
+      enrolledCourses: enrolledCourseDetails,
+    });
+  } catch (error) {
+    console.error("Error retrieving enrolled courses", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/completed/:userId", verifyToken, authorizeRole("user"), async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const db = mongodb.getDB();
+    const userCoursesCollection = db.collection("user_courses");
+    const coursesCollection = db.collection("courses");
+
+    const completedCourses = await userCoursesCollection
+      .find({
+        userId: userId,
+        completed: true,
+      })
+      .toArray();
+
+    const courseIds = completedCourses.map((course) => course.courseId);
+    const completedCourseDetails = await coursesCollection
+      .find({ _id: { $in: courseIds.map(ObjectId) } })
+      .toArray();
+
+    res.json({
+      status: true,
+      message: "Completed courses retrieved successfully.",
+      incompleteCourses: completedCourseDetails,
+    });
+  } catch (error) {
+    console.error("Error retrieving completed courses", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

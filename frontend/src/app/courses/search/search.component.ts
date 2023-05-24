@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { catchError } from 'rxjs';
 import { selectCourses } from 'src/app/ngrx/selectors/search.selectors';
 import { CoursesService } from 'src/app/services/courses.service';
 import { DialogService } from 'src/app/services/dialog.service';
@@ -32,10 +33,9 @@ export class SearchComponent implements OnInit {
             next: (result: any) => {
               this.dialogService.showDialog('Course enrolled', 'Course enrolled successfully!');
             },
-            error: (err: any) => { this.dialogService.showDialog('error', err.error.error) },
+            error: (err: any) => catchError(err),
             complete: () => {},
           });
-        // dispatch search()
       }
     }
   }
