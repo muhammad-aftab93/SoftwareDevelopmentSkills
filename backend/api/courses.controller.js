@@ -194,7 +194,6 @@ router.post("/markAsComplete", verifyToken, authorizeRole("user"), async (req, r
     res.json({
       status: true,
       message: "Course marked as completed.",
-      courses: completedCourseDetails,
     });
   } catch (error) {
     console.error("Failed to mark course as completed.", error);
@@ -217,7 +216,6 @@ router.post("/withdraw", verifyToken, authorizeRole("user"), async (req, res) =>
     res.json({
       status: true,
       message: "Course with-drawl successful.",
-      courses: completedCourseDetails,
     });
   } catch (error) {
     console.error("Failed to with-draw the course.", error);

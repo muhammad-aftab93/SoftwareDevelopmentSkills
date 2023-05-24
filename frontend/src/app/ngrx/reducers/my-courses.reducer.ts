@@ -5,12 +5,14 @@ import { Course } from 'src/app/models/course';
 export interface MyCoursesState {
   ongoingCourses: Course[];
   completedCourses: Course[];
+  message: string | null;
   error: string | null;
 }
 
 const initialState: MyCoursesState = {
   ongoingCourses: [],
   completedCourses: [],
+  message: null,
   error: null,
 }
 
@@ -36,6 +38,34 @@ export const myCoursesReducer = createReducer(
   })),
   on(myCoursesActions.getFailure, (state, { error }) => ({
     ...state,
+    error: error,
+  })),
+  on(myCoursesActions.complete, (state, { userId, courseId }) => ({
+    ...state,
+    error: null,
+  })),
+  on(myCoursesActions.completeSuccess, (state, { message }) => ({
+    ...state,
+    message: message,
+    error: null,
+  })),
+  on(myCoursesActions.completeFailure, (state, { error }) => ({
+    ...state,
+    message: null,
+    error: error,
+  })),
+  on(myCoursesActions.withdraw, (state, { userId, courseId }) => ({
+    ...state,
+    error: null,
+  })),
+  on(myCoursesActions.withdrawSuccess, (state, { message }) => ({
+    ...state,
+    message: message,
+    error: null,
+  })),
+  on(myCoursesActions.withdrawFailure, (state, { error }) => ({
+    ...state,
+    message: null,
     error: error,
   })),
   );

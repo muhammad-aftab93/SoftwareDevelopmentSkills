@@ -13,6 +13,8 @@ export class CoursesListComponent implements OnInit {
   @Input() courses: Course[] | null = [];
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   @Output() onEnroll: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onComplete: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onWithDraw: EventEmitter<string> = new EventEmitter<string>();
   isLoggedIn$ = this.store.select(selectIsLoggedIn);
   userRole$ = this.store.select(selectUserRole);
 
@@ -32,6 +34,14 @@ export class CoursesListComponent implements OnInit {
 
   onEnrollCourse(id: string): void {
     this.onEnroll.emit(id);
+  }
+
+  onCompleteCourse(id: string): void {
+    this.onComplete.emit(id);
+  }
+
+  onWithDrawCourse(id: string): void {
+    this.onWithDraw.emit(id);
   }
 
 }

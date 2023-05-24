@@ -15,6 +15,11 @@ export const selectCompletedCourses = createSelector(
   (state: MyCoursesState) => state.completedCourses
 );
 
+export const selectMessage = createSelector(
+  selectMyCoursesState,
+  (state: MyCoursesState) => state.error
+);
+
 export const selectError = createSelector(
   selectMyCoursesState,
   (state: MyCoursesState) => state.error
