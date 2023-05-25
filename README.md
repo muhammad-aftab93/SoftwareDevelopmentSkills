@@ -1,12 +1,14 @@
-# Software Development Skills
+# Software Development Skills - Fullstack
 
-This is a course project for the course **Software Development Skills** offered by **LUT University**
+This is a course project for the course **Software Development Skills - Fullstack** offered by **LUT University**
 
 **Demo:**
 
 Live demo: [https://e-learning-app.azurewebsites.net](https://e-learning-app.azurewebsites.net/ "eLearning")
 
-Video demo: 
+Video demo: [https://youtu.be/r-AkLxBTOJs](https://youtu.be/r-AkLxBTOJs "Video Link")
+
+Github repository: [https://github.com/muhammad-aftab93/SoftwareDevelopmentSkills](https://github.com/muhammad-aftab93/SoftwareDevelopmentSkills "Github Repository")
 
 **How to run this project directly:**
 
@@ -21,7 +23,7 @@ Follow the following steps in order to run this project locally:
 If you want to run this project using docker you can follow following steps:
 
 - Go to ***root/frontend*** and run `npm install`, then run `npm run prod`.
-- Then go to ***root/backend*** and run npm run docker.
+- Then go to ***root/backend*** and run `npm run docker`.
 - Once docker image is built and container is running, navigate to `http://localhost:5000` in your browser to access the website.
 
 **Technology stack:**

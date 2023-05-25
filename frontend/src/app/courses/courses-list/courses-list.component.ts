@@ -11,6 +11,7 @@ import {selectIsLoggedIn, selectUserRole} from 'src/app/ngrx/selectors/login.sel
 export class CoursesListComponent implements OnInit {
   @Input() page: string = '';
   @Input() courses: Course[] | null = [];
+  @Input() isCompleted: boolean = false;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
   @Output() onEnroll: EventEmitter<string> = new EventEmitter<string>();
   @Output() onComplete: EventEmitter<string> = new EventEmitter<string>();

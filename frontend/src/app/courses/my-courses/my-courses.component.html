@@ -22,7 +22,7 @@
         </h2>
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
           <div class="accordion-body">
-            <app-courses-list  [page]="'my-courses'" [courses]="completedCourses$ | async"></app-courses-list>
+            <app-courses-list  [page]="'my-courses'" [courses]="completedCourses$ | async" [isCompleted]="true"></app-courses-list>
           </div>
         </div>
       </div>
