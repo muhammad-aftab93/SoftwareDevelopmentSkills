@@ -1,6 +1,31 @@
 <div class="row" style="padding: 35px">
   <div class="col-1"></div>
   <div class="col-10">
-    <app-courses-list></app-courses-list>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+          <button style="background-color: #3f51b5; color: white" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            On-going courses ({{(ongoingCourses$ | async)?.length}})
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+          <div class="accordion-body">
+            <app-courses-list  [page]="'my-courses'" [courses]="ongoingCourses$ | async" (onComplete)="onComplete($event)" (onWithDraw)="onWithDraw($event)"></app-courses-list>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+          <button style="background-color: #3f51b5; color: white" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            Completed courses ({{(completedCourses$ | async)?.length}})
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+          <div class="accordion-body">
+            <app-courses-list  [page]="'my-courses'" [courses]="completedCourses$ | async" [isCompleted]="true"></app-courses-list>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

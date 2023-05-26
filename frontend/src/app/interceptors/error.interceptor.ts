@@ -7,20 +7,20 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, catchError, throwError} from 'rxjs';
-import { GlobalErrorService } from '../services/global-error.service';
+import { DialogService } from '../services/dialog.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
   constructor(
-    private globalErrorService: GlobalErrorService,
+    private globalErrorService: DialogService,
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.globalErrorService.showError('Error', error.error.error);
+        this.globalErrorService.showDialog('Error', error.error.error);
         return throwError(() =>  error);
       })
     );

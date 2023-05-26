@@ -5,11 +5,11 @@ import { DialogComponent } from '../dialog/dialog.component';
 @Injectable({
   providedIn: 'root',
 })
-export class GlobalErrorService {
+export class DialogService {
 
   constructor(private dialog: MatDialog) {}
 
-  showError(title: string, message: string): void {
+  showDialog(title: string, message: string): void {
     this.dialog.open(DialogComponent, {
       data: {
         title: title,
@@ -18,7 +18,7 @@ export class GlobalErrorService {
     });
   }
 
-  hideError(): void {
+  hideDialog(): void {
     this.dialog.closeAll();
   }
 

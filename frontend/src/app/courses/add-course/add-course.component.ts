@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import {add} from "../../ngrx/actions/manage-course.actions";
+import {Course} from "../../models/course";
 
 @Component({
   selector: 'app-add-course',
@@ -30,19 +32,20 @@ export class AddCourseComponent {
   }
 
   onAdd(addForm: FormGroup) {
-    // if (addForm.invalid) {
-    //   this.errorMessage = 'All fields are required.';
-    //   return;
-    // }
+    if (addForm.invalid) {
+      this.errorMessage = 'All fields are required.';
+      return;
+    }
 
-    // this.store.dispatch(
-    //   login({
-    //     username: loginForm.value.username,
-    //     password: loginForm.value.password,
-    //   })
-    // );
-
-
+    this.store.dispatch(
+      add({
+        title: addForm.value.title,
+        author: addForm.value.author,
+        category: addForm.value.category,
+        price: addForm.value.price,
+      })
+    );
+    this.addForm.reset();
   }
 
 }

@@ -19,6 +19,14 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { authGuard } from '../guards/auth.guard';
+import { roleGuard } from "../guards/role.guard";
+import {manageCourseReducer} from "../ngrx/reducers/manage-course.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {ManageCourseEffects} from "../ngrx/effects/manage-course.effects";
+import { searchReducer } from '../ngrx/reducers/search.reducer';
+import { SearchEffects } from '../ngrx/effects/search.effects';
+import { myCoursesReducer } from '../ngrx/reducers/my-courses.reducer';
+import { MyCoursesEffects } from '../ngrx/effects/my-courses.effects';
 
 const routes: Routes = [
   {
@@ -38,7 +46,10 @@ const routes: Routes = [
   {
     path: 'manage',
     component: ManageComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard, roleGuard],
+    data: {
+      expectedRole: 'admin'
+    }
   }
 ];
 
@@ -63,6 +74,14 @@ const routes: Routes = [
     MatFormFieldModule,
     ReactiveFormsModule,
     StoreModule.forFeature('loginState', loginReducer),
+    StoreModule.forFeature('manageCourseState', manageCourseReducer),
+    StoreModule.forFeature('searchState', searchReducer),
+    StoreModule.forFeature('myCoursesState', myCoursesReducer),
+    EffectsModule.forFeature([
+      ManageCourseEffects,
+      SearchEffects,
+      MyCoursesEffects,
+    ]),
   ],
   providers: [
     Store,

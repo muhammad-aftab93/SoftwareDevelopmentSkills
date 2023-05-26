@@ -7,17 +7,17 @@
 
     <mat-card-content class="full-width text-center">
       <form [formGroup]="filterForm" (submit)="onSearch(filterForm)">
-        <mat-form-field class="form-input">
+        <mat-form-field class="full-width">
           <mat-label>Title</mat-label>
-          <input matInput value="" formControlName="title" required>
+          <input matInput value="" formControlName="title">
         </mat-form-field>
 
-        <mat-form-field class="form-input">
+        <mat-form-field class="full-width">
           <mat-label>Author</mat-label>
-          <input matInput value="" formControlName="author" required>
+          <input matInput value="" formControlName="author">
         </mat-form-field>
 
-        <mat-form-field class="form-input">
+        <mat-form-field class="full-width">
           <mat-label>Select an category</mat-label>
           <mat-select formControlName="category">
             <mat-option *ngFor="let option of categoryOptions" [value]="option">{{ option }}</mat-option>
@@ -27,7 +27,7 @@
         <div class="text-center">
           <button type="submit" mat-raised-button color="primary">
             <mat-icon>search</mat-icon>
-            Search Courses
+            Search
           </button>
         </div>
       </form>

@@ -20,6 +20,8 @@ import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { GlobalErrorHandler } from './interceptors/global-error-handler';
+import { CommonModule } from "@angular/common";
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { GlobalErrorHandler } from './interceptors/global-error-handler';
     DialogComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     MatIconModule,
     MatDialogModule,
@@ -53,6 +56,11 @@ import { GlobalErrorHandler } from './interceptors/global-error-handler';
   {
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorInterceptor,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
     multi: true
   },
   {
