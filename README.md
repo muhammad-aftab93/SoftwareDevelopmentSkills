@@ -6,7 +6,7 @@ This is a course project for the course **Software Development Skills - Fullstac
 
 Live demo: [https://e-learning-app.azurewebsites.net](https://e-learning-app.azurewebsites.net/ "eLearning")
 
-Video demo: [https://youtu.be/r-AkLxBTOJs](https://youtu.be/r-AkLxBTOJs "Video Link")
+Video demo: [https://youtu.be/BRofc--aYqU](https://youtu.be/BRofc--aYqU "Video demo")
 
 Github repository: [https://github.com/muhammad-aftab93/SoftwareDevelopmentSkills](https://github.com/muhammad-aftab93/SoftwareDevelopmentSkills "Github Repository")
 
