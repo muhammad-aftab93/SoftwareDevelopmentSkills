@@ -2,6 +2,10 @@
 
 This is a course project for the course **Software Development Skills - Fullstack** offered by **LUT University**
 
+**Student Name:** Muhammad Aftab Hameed
+
+**Student Number:** 001704541
+
 **Demo:**
 
 Live demo: [https://e-learning-app.azurewebsites.net](https://e-learning-app.azurewebsites.net/ "eLearning")
